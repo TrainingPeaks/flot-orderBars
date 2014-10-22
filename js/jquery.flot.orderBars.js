@@ -56,9 +56,9 @@
                     // If we haven't already calculated the decallage for this order value, do it.
                     if(typeof decallageByOrder[serie.bars.order] === 'undefined') {
                         if (isBarAtLeftOfCenter(position)){
-                            decallageByOrder[serie.bars.order] = -1*(sumWidth(orderedBarSeries,position-1,Math.floor(nbOfBarsToOrder / 2)-1)) - centerBarShift;
+                            decallageByOrder[serie.bars.order] = -1*(sumWidth(orderedBarSeries,position-1,Math.floor(nbOfBarsToOrder / 2)-1)) - (centerBarShift - (1 - (nbOfBarsToOrder % 2)) * borderWidthInXabsWidth);
                         }else{
-                            decallageByOrder[serie.bars.order] = sumWidth(orderedBarSeries,Math.ceil(nbOfBarsToOrder / 2),position-2) + centerBarShift + borderWidthInXabsWidth*2;
+                            decallageByOrder[serie.bars.order] = sumWidth(orderedBarSeries,Math.ceil(nbOfBarsToOrder / 2),position-2) + (centerBarShift + (1 + (nbOfBarsToOrder % 2)) * borderWidthInXabsWidth);
                         }
                     }
 
